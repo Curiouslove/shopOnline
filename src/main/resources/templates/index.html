@@ -69,7 +69,7 @@
 <div id="page">
 <!--    Nav    -->
 
-    <nav th:insert="/fragments :: nav">
+    <nav th:insert="fragments :: nav">
 
     </nav>
 <!--slider start-->
@@ -153,7 +153,6 @@
                         <div class="product-grid" th:style="'background-image:url('+${product.getImageUrl()[0]}+');'">
                             <div class="inner">
                                 <p>
-<!--                                    djjjdkj-->
                                     <a href="single.html" class="icon"><i class="icon-shopping-cart"></i></a>
                                     <a href="single.html" class="icon"><i class="icon-eye"></i></a>
                                 </p>
@@ -302,7 +301,7 @@
 
 <!--    footer -->
 
-    <footer th:insert="/fragments :: footer">
+    <footer th:insert="fragments :: footer">
 
     </footer>
 
