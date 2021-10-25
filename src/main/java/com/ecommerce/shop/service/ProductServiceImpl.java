@@ -19,7 +19,22 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public List<Product> saveAll(List<Product> products) {
+        return productRepository.saveAll(products);
+    }
+
+    @Override
     public List<Product> findAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public Product findById(Long id) {
+        return productRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Invalid id"));
+    }
+
+    @Override
+    public void deleteById(Long id) {
+       productRepository.deleteById(id);
     }
 }
