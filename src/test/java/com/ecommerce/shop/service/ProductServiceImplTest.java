@@ -1,40 +1,32 @@
 package com.ecommerce.shop.service;
 
 import com.ecommerce.shop.data.model.Product;
-import com.ecommerce.shop.data.repository.ProductRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import com.ecommerce.shop.payload.request.ProductRequest;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import static org.mockito.Mockito.*;
-import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-class ProductServiceImplTest {
+@SpringBootTest
+@Sql(scripts = {"/db/insert.sql"})
+public class ProductServiceImplTest {
 
-    @Mock
-    ProductRepository productRepository;
-
-    @InjectMocks
-    ProductService productServiceImpl;
-
-    @BeforeEach
-    void setUp() {
-        productServiceImpl = new ProductServiceImpl();
-        MockitoAnnotations.openMocks(this);
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
+    @Autowired
+    ProductService productService;
 
     @Test
-    void saveProductMockTest(){
-        Product product = new Product();
-        when(productServiceImpl.save(product)).thenReturn(product);
-        productServiceImpl.save(product);
-        verify(productRepository, times(1)).save(product);
+    void updateProductTest(){
+
+        assertThat(productService.findById(110L).getName()).isEqualTo("luxury chair");
+
+        ProductRequest productRequest = new ProductRequest();
+        productRequest.setName("egyptian mat");
+
+        Product product = productService.updateProduct(110L, productRequest);
+        assertThat(product).isNotNull();
+        assertThat(product.getName()).isEqualTo("egyptian mat");
+
     }
 }

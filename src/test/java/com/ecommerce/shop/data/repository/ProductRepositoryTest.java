@@ -2,6 +2,7 @@ package com.ecommerce.shop.data.repository;
 
 import com.ecommerce.shop.data.model.Currency;
 import com.ecommerce.shop.data.model.Product;
+import com.ecommerce.shop.payload.request.ProductRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,10 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @Slf4j
@@ -72,6 +75,32 @@ class ProductRepositoryTest {
         assertThat(productRepositoryImpl.findById(110L).orElse(null)).isNotNull();
         productRepositoryImpl.deleteById(110L);
         assertThat(productRepositoryImpl.findById(110L).orElse(null)).isNull();
+    }
+
+    @Test
+    void update_product_by_id(){
+//        Product product =  new Product();
+//
+//        List<String> imageUrl = new ArrayList<>(List.of("image1, image2"));
+//
+//        product =  new Product();
+//        product.setId(1L);
+//        product.setName("product 1");
+//        product.setDetails("details");
+//        product.setPrice(12.00);
+//        product.setCurrency(Currency.NGN);
+//        product.setImageUrl(imageUrl);
+//        productRepositoryImpl.save(product);
+//
+//
+//        ProductRequest productRequest =  new ProductRequest();
+//        productRequest.setName("test product");
+//
+////        System.out.println(productServiceImpl.findById(1L));
+//        Product updatedProduct = productRepositoryImpl.updateProduct(1L, productRequest);
+//        System.out.println(updatedProduct);
+
+//        assertThat(updatedProduct.getId()).isEqualTo(product.getId());
     }
 
 }
