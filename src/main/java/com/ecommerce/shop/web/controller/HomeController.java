@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -37,8 +38,11 @@ public class HomeController {
         return "contact";
     }
 
-    @GetMapping("/products")
-    public String getProduct(){
+    @GetMapping("/products/{id}")
+    public String getProduct(Model model, @PathVariable Long id){
+        Product product = productServiceImpl.findById(id);
+        log.info("product list items are -----> {}", product);
+        model.addAttribute("product", product);
         return "product";
     }
 
@@ -47,8 +51,11 @@ public class HomeController {
         return "services";
     }
 
-    @GetMapping("/single")
-    public String getSingle(){
+    @GetMapping("/single/{id}")
+    public String getSingle(Model model, @PathVariable Long id){
+        Product product = productServiceImpl.findById(id);
+        log.info("product list items are -----> {}", product);
+        model.addAttribute("product", product);
         return "single";
     }
 
